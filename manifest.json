@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Ro5n3R",
+  "short_name": "Ro5n3R",
+  "version": "0.6.1",
+  "description": "A calm new-tab launchpad with search, bookmarks, recent history, and pinned sites.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "favicon",
+    "storage"
+  ],
+  "optional_permissions": [
+    "topSites",
+    "history",
+    "bookmarks"
+  ],
+  "host_permissions": [
+    "https://api.open-meteo.com/*",
+    "https://geocoding-api.open-meteo.com/*"
+  ]
+}

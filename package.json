@@ -1,0 +1,10 @@
+{
+  "name": "ro5n3r",
+  "version": "0.6.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check app.js && node --check background.js && node --check launchpad.js && node --check sites.js && node --check browser-sites.js && node --check browser-history.js && node --check browser-bookmarks.js && node --check bookmarks.js && node --check weather.js && node --check widgets.js && node --check history.js && node --check logic.js && node --check storage.js && npm test"
+  }
+}

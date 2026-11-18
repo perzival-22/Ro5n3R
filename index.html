@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#D3E8FF" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <title>Ro5n3R</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <!-- Icon sprite: each icon is drawn once here and reused with <use>, so the
+         page ships no icon font and no image requests. -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 4h6l-1 6 3 3v2H7v-2l3-3-1-6ZM12 15v5" /></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-return" viewBox="0 0 24 24"><path d="M19 6v6a3 3 0 0 1-3 3H6M10 11l-4 4 4 4" /></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3" /><path d="M8 3v4M16 3v4M4 10h16" /></symbol>
+      <symbol id="i-history" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><path d="M12 7.5V12l3 2" /></symbol>
+      <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4V4.5Z" /></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z" /></symbol>
+      <symbol id="i-weather" viewBox="0 0 24 24"><path d="M12 3v2M4.2 4.2l1.5 1.5M2 12h2M19.8 4.2l-1.5 1.5M20 12h2M7 10a5 5 0 0 1 9.4-2.4" /><path d="M6.5 19h11a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9.7-1.4A4.2 4.2 0 0 0 6.5 19Z" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+    </svg>
+
+    <a class="skip-link" href="#search-input">Skip to search</a>
+
+    <header class="topbar">
+      <div class="topbar-actions">
+        <button class="icon-button" id="settings-open" type="button" aria-label="Open settings" title="Settings">
+          <svg class="icon" aria-hidden="true"><use href="#i-settings" /></svg>
+        </button>
+        <button class="avatar-button" id="profile-open" type="button" aria-label="Edit your name"><span id="avatar-initials">R</span></button>
+      </div>
+    </header>
+
+    <!-- Three columns on a wide window: today and recent, launch, bookmarks. -->
+    <main id="main-content" class="dashboard" tabindex="-1">
+      <div class="column column--left">
+        <section class="card schedule-card rise rise-2" aria-labelledby="schedule-heading">
+          <div class="card-heading">
+            <span class="card-icon" aria-hidden="true"><svg class="icon"><use href="#i-calendar" /></svg></span>
+            <h2 id="schedule-heading">Today</h2>
+            <span class="pill-label" id="schedule-date">Today</span>
+          </div>
+          <ol class="schedule-list" id="schedule-list"></ol>
+          <p class="card-empty" id="schedule-empty" hidden>Nothing scheduled. Keep the day open or add one anchor.</p>
+          <button class="link-button" id="schedule-add" type="button">Add to schedule <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+        </section>
+
+        <section class="card history-card rise rise-3" aria-labelledby="history-heading">
+          <div class="card-heading">
+            <span class="card-icon" aria-hidden="true"><svg class="icon"><use href="#i-history" /></svg></span>
+            <h2 id="history-heading">Recent</h2>
+            <button class="link-button history-all" id="history-open-all" type="button">All history</button>
+          </div>
+          <ul class="history-list" id="history-list" data-icon-scope></ul>
+          <div class="card-empty" id="history-note"></div>
+        </section>
+
+      </div>
+
+      <section class="column column--center" aria-label="Launchpad">
+        <div class="hero-top">
+          <div class="clock-bloom rise rise-1">
+            <p class="clock" id="clock"><time id="clock-time">--:--</time><span class="clock-period" id="clock-period"></span></p>
+            <p class="date-label" id="date-label">Today</p>
+          </div>
+          <h1 class="rise rise-2" id="greeting">Good day</h1>
+          <p class="subtitle rise rise-2" id="hero-subline">What are we searching for today?</p>
+        </div>
+
+        <div class="hero-search rise rise-3">
+          <form id="search-form" class="search" role="search">
+            <label class="visually-hidden" for="search-input">Search the web or jump to one of your sites</label>
+            <svg class="icon search-icon" aria-hidden="true"><use href="#i-search" /></svg>
+            <input id="search-input" name="query" type="search" autocomplete="off" spellcheck="false" placeholder="Search or jump to a site" autofocus
+              role="combobox" aria-expanded="false" aria-controls="search-suggestions" aria-autocomplete="list">
+            <kbd class="search-hint" aria-hidden="true" title="Press / to search">/</kbd>
+            <ul class="suggestions" id="search-suggestions" role="listbox" aria-label="Your matching sites" hidden></ul>
+          </form>
+        </div>
+
+        <div class="engine-row rise rise-4" id="engine-row" role="radiogroup" aria-label="Search engine"></div>
+
+        <section class="sites" aria-labelledby="sites-heading">
+          <h2 class="visually-hidden" id="sites-heading">Pinned shortcuts and your sites</h2>
+          <p class="visually-hidden" id="tiles-hint">Arrow keys move between sites. P pins or unpins. Delete removes.</p>
+          <ul class="tile-grid" id="shortcut-list"></ul>
+          <div class="sites-note" id="sites-note" hidden></div>
+        </section>
+      </section>
+
+      <div class="column column--right">
+        <section class="card weather-card rise rise-2" aria-labelledby="weather-heading">
+          <div class="weather-top"><svg class="icon" aria-hidden="true"><use href="#i-weather" /></svg><div class="weather-temperature-group"><strong id="weather-temperature">--°</strong><button class="weather-unit" id="weather-unit" type="button" hidden>°C</button></div></div>
+          <h2 id="weather-heading">Weather</h2>
+          <p class="weather-location" id="weather-location">Set your city in Settings.</p>
+          <div class="weather-details" id="weather-details" hidden></div>
+          <button class="weather-setup" id="weather-setup" type="button">Set city <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+          <a class="weather-credit" href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Weather by Open-Meteo</a>
+        </section>
+        <section class="card bookmarks-card rise rise-2" aria-labelledby="bookmarks-heading">
+          <div class="card-heading">
+            <span class="card-icon" aria-hidden="true"><svg class="icon"><use href="#i-bookmark" /></svg></span>
+            <h2 id="bookmarks-heading">Bookmarks</h2>
+            <button class="link-button bookmarks-manage" id="bookmarks-manage" type="button">Manage</button>
+          </div>
+          <div class="bookmark-folders" id="bookmark-folders" role="group" aria-label="Bookmark folders" hidden></div>
+          <ul class="bookmark-list" id="bookmark-list" data-icon-scope hidden></ul>
+          <div class="card-empty" id="bookmark-note"></div>
+        </section>
+      </div>
+    </main>
+
+    <a class="brand" href="#main-content" aria-label="Ro5n3R, back to top">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-name">Ro5n3R</span>
+    </a>
+
+    <dialog id="settings-dialog" class="dialog">
+      <form method="dialog" class="dialog-card" id="settings-form">
+        <div class="dialog-heading">
+          <div><p class="eyebrow">Make it yours</p><h2>Settings</h2></div>
+          <button class="icon-button" value="cancel" formnovalidate aria-label="Close settings"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg></button>
+        </div>
+        <div class="settings-grid">
+          <div class="settings-column">
+        <label class="field"><span>Your name</span><input id="settings-name" maxlength="40" autocomplete="name" placeholder="What should Ro5n3R call you?"></label>
+        <div class="field-row">
+          <label class="field"><span>Time format</span><select id="settings-time"><option value="12">12-hour</option><option value="24">24-hour</option></select></label>
+          <label class="field"><span>Theme</span><select id="settings-theme"><option value="system">Follow system</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+        </div>
+        <div class="field background-field">
+          <label for="settings-background-mode">Background</label>
+          <select id="settings-background-mode"><option value="theme">Default theme</option><option value="photo">My picture</option></select>
+          <div class="background-actions">
+            <label class="secondary-button background-upload">Choose picture<input id="settings-background-file" type="file" accept="image/jpeg,image/png,image/webp" class="visually-hidden"></label>
+            <button class="secondary-button" id="settings-background-remove" type="button" hidden>Remove picture</button>
+          </div>
+          <img class="background-preview" id="settings-background-preview" alt="Preview of your background picture" hidden>
+          <p class="setting-status" id="settings-background-status">Your picture stays on this device.</p>
+          <p class="form-error" id="settings-background-error" role="alert" hidden></p>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>Clock color</span><select id="settings-clock-color"><option value="default">Default blue</option><option value="baby-pink">Baby Pink</option><option value="dark-red">Dark red</option><option value="dark-green">Dark green</option><option value="ocean-blue">Ocean Blue</option></select></label>
+          <label class="field"><span>Side panel color</span><select id="settings-panel-color"><option value="default">Default blue</option><option value="baby-pink">Baby Pink</option><option value="dark-red">Dark red</option><option value="dark-green">Dark green</option><option value="ocean-blue">Ocean Blue</option></select></label>
+        </div>
+          </div>
+          <div class="settings-column">
+        <fieldset class="widget-settings">
+          <legend>Display</legend>
+          <p>Search and pinned sites always stay. Choose what else appears.</p>
+          <div class="widget-presets">
+            <button class="secondary-button" id="widgets-minimal" type="button">Minimal</button>
+            <button class="secondary-button" id="widgets-full" type="button">Show all</button>
+          </div>
+          <div class="widget-options">
+            <label class="widget-option"><input type="checkbox" data-widget="clock"><span>Clock and greeting</span></label>
+            <label class="widget-option"><input type="checkbox" data-widget="searchEngines"><span>Search engine choices</span></label>
+            <label class="widget-option"><input type="checkbox" data-widget="today"><span>Today schedule</span></label>
+            <label class="widget-option"><input type="checkbox" data-widget="recent"><span>Recent history</span></label>
+            <label class="widget-option"><input type="checkbox" data-widget="weather"><span>Weather</span></label>
+            <label class="widget-option"><input type="checkbox" data-widget="bookmarks"><span>Bookmarks</span></label>
+            <label class="widget-option"><input type="checkbox" data-widget="mostVisited"><span>Most-visited sites</span></label>
+            <label class="widget-option"><input type="checkbox" data-widget="secondRow"><span>Second row of sites</span></label>
+          </div>
+        </fieldset>
+        <div class="field-row settings-weather-row">
+          <label class="field"><span>Weather city</span><input id="settings-weather-city" maxlength="80" placeholder="e.g. Portland, Maine" autocomplete="address-level2"></label>
+          <label class="field"><span>Temperature</span><select id="settings-weather-unit"><option value="fahrenheit">Fahrenheit (°F)</option><option value="celsius">Celsius (°C)</option></select></label>
+        </div>
+        <details class="settings-access">
+          <summary>Chrome data access</summary>
+        <div class="field">
+          <span id="sites-setting-label">Most-visited sites</span>
+          <div class="setting-row">
+            <p class="setting-status" id="sites-setting-status">Checking…</p>
+            <button class="secondary-button" id="sites-setting-toggle" type="button" aria-describedby="sites-setting-label sites-setting-status" hidden>Turn on</button>
+          </div>
+          <div class="setting-row" id="hidden-sites-row" hidden>
+            <p class="setting-status" id="hidden-sites-status"></p>
+            <button class="secondary-button" id="hidden-sites-restore" type="button">Restore</button>
+          </div>
+        </div>
+        <div class="field">
+          <span id="history-setting-label">Recent history</span>
+          <div class="setting-row">
+            <p class="setting-status" id="history-setting-status">Checking…</p>
+            <button class="secondary-button" id="history-setting-toggle" type="button" aria-describedby="history-setting-label history-setting-status" hidden>Turn on</button>
+          </div>
+        </div>
+        <div class="field">
+          <span id="bookmarks-setting-label">Chrome bookmarks</span>
+          <div class="setting-row">
+            <p class="setting-status" id="bookmarks-setting-status">Checking…</p>
+            <button class="secondary-button" id="bookmarks-setting-toggle" type="button" aria-describedby="bookmarks-setting-label bookmarks-setting-status" hidden>Turn on</button>
+          </div>
+        </div>
+        </details>
+          </div>
+        </div>
+        <div class="dialog-actions"><button class="secondary-button" value="cancel" formnovalidate>Cancel</button><button class="primary-button" value="default">Save settings</button></div>
+      </form>
+    </dialog>
+
+    <!-- Every Cancel and close button carries `formnovalidate`: they are
+         submit buttons (that is how <form method="dialog"> closes), and
+         without it the browser demands the required fields before closing. -->
+    <dialog id="shortcut-dialog" class="dialog">
+      <form method="dialog" class="dialog-card" id="shortcut-form">
+        <div class="dialog-heading"><div><p class="eyebrow">One click away</p><h2>Pin a site</h2></div><button class="icon-button" value="cancel" formnovalidate aria-label="Close pin form"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg></button></div>
+        <label class="field"><span>Name</span><input id="shortcut-name" maxlength="24" placeholder="Notion" required></label>
+        <label class="field"><span>Website address</span><input id="shortcut-url" inputmode="url" placeholder="notion.so" required></label>
+        <p class="form-error" id="shortcut-error" role="alert" hidden>That address doesn't look complete yet. Try something like notion.so.</p>
+        <div class="dialog-actions"><button class="secondary-button" value="cancel" formnovalidate>Cancel</button><button class="primary-button" value="default">Pin site</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="schedule-dialog" class="dialog">
+      <form method="dialog" class="dialog-card" id="schedule-form">
+        <div class="dialog-heading"><div><p class="eyebrow">Anchor the day</p><h2>Add schedule item</h2></div><button class="icon-button" value="cancel" formnovalidate aria-label="Close schedule form"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg></button></div>
+        <label class="field"><span>What</span><input id="schedule-title" maxlength="60" placeholder="Design review" required></label>
+        <div class="field-row">
+          <label class="field"><span>Starts</span><input id="schedule-time" type="time" required></label>
+          <label class="field"><span>Ends <small>(optional)</small></span><input id="schedule-end" type="time"></label>
+        </div>
+        <div class="dialog-actions"><button class="secondary-button" value="cancel" formnovalidate>Cancel</button><button class="primary-button" value="default">Add to today</button></div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

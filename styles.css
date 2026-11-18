@@ -1,0 +1,1334 @@
+/* ------------------------------------------------------------------
+   Tokens. Every colour in this file is a variable with a dark ("dusk") and
+   a light ("dawn") value, so a theme switch changes values here and never
+   touches a component. Hex and rgba literals belong in these blocks only.
+   ------------------------------------------------------------------ */
+:root {
+  /* Dusk is the default look; dawn is opt-in or follows a light system. */
+  --sky-top: #0b0a24;
+  --sky-bottom: #1d1650;
+  --glow-a: rgba(124, 92, 255, 0.42);
+  --glow-b: rgba(255, 110, 190, 0.2);
+  --glow-c: rgba(40, 200, 190, 0.24);
+  --sun-1: #ffd59c;
+  --sun-2: #ff7d5c;
+  --sun-glow: rgba(255, 130, 120, 0.38);
+  --ridge-far-1: #4a3a92;
+  --ridge-far-2: #251e5e;
+  --ridge-near-1: #2a2163;
+  --ridge-near-2: #120f34;
+  --wave: rgba(56, 196, 190, 0.22);
+
+  --surface: rgba(44, 38, 104, 0.52);
+  --surface-sheen: rgba(255, 255, 255, 0.06);
+  --surface-raised: #1f1a4c;
+  --row: rgba(255, 255, 255, 0.07);
+  --row-hover: rgba(255, 255, 255, 0.11);
+  --input: rgba(255, 255, 255, 0.07);
+  --search-fill: rgba(18, 16, 52, 0.62);
+  --search-edge: rgba(150, 150, 255, 0.55);
+  --ink: #f6f4ff;
+  --ink-muted: #c0bae6;
+  --brand: #6d5df6;
+  --brand-strong: #5a49e8;
+  --brand-text: #b9adff;
+  --brand-soft: rgba(139, 123, 255, 0.24);
+  --on-brand: #ffffff;
+  --chip-on: #bcadff;
+  --on-chip-on: #1b1647;
+  --play-1: #8b7bff;
+  --play-2: #b48cff;
+  --ring-1: #b18cff;
+  --ring-2: #4fb3ff;
+  --ring-track: rgba(255, 255, 255, 0.1);
+  --hairline: rgba(255, 255, 255, 0.12);
+  --hairline-strong: rgba(255, 255, 255, 0.24);
+  --focus-ring: rgba(185, 173, 255, 0.35);
+  --scrim: rgba(5, 4, 20, 0.62);
+  --danger: #ffb4ab;
+  --dot-0: #ff5c6c;
+  --dot-1: #2cc6a8;
+  --dot-2: #f5c142;
+  --dot-3: #6fa8ff;
+  --stat-1: rgba(48, 160, 176, 0.24);
+  --stat-1-icon: #ff8a3d;
+  --stat-2: rgba(46, 176, 128, 0.24);
+  --stat-2-icon: #3ddc97;
+  --stat-3: rgba(196, 104, 86, 0.28);
+  --stat-3-icon: #ffb36b;
+  --clock-ink: #ffffff;
+  --clock-shadow: 0 6px 40px rgba(120, 90, 255, 0.45);
+  --shadow: 0 18px 48px rgba(4, 3, 20, 0.35);
+  --shadow-pop: 0 26px 80px rgba(4, 3, 20, 0.55);
+  --search-shadow: 0 0 0 4px rgba(110, 100, 255, 0.14), 0 14px 44px rgba(60, 40, 170, 0.4);
+
+  --radius-card: 28px;
+  --radius-row: 16px;
+  --radius-tile: 20px;
+
+  /* One spring for the whole page. The first line is the fallback for
+     browsers without linear(); the second samples a real spring that
+     overshoots by about 6% and settles. */
+  --spring: cubic-bezier(0.2, 0.9, 0.25, 1.25);
+  --spring: linear(0, 0.22 5%, 0.6 12%, 0.86 18%, 1.02 25%, 1.06 32%, 1.045 40%, 1.01 52%, 0.995 64%, 1);
+
+  /* Motion amounts as variables, so reduced motion can zero them in one place. */
+  --press-scale: 0.97;
+  --rise-distance: 14px;
+  --lift: -3px;
+  --hover-scale: 1.05;
+
+  --tile-width: 100px;
+  --tile-gap: 12px;
+  --tile-columns: 6;
+
+  color-scheme: dark;
+}
+
+/* Dawn values, written once and applied twice below: when the user picks
+   Light, and when they follow a light system theme. */
+html[data-theme="light"] {
+  --sky-top: #efeaff;
+  --sky-bottom: #d3e8ff;
+  --glow-a: rgba(140, 110, 255, 0.28);
+  --glow-b: rgba(255, 150, 200, 0.24);
+  --glow-c: rgba(60, 200, 190, 0.2);
+  --sun-1: #ffe2b4;
+  --sun-2: #ff9b7a;
+  --sun-glow: rgba(255, 160, 140, 0.35);
+  --ridge-far-1: #cdc3f7;
+  --ridge-far-2: #bcd0f7;
+  --ridge-near-1: #ab9eec;
+  --ridge-near-2: #a9c2f0;
+  --wave: rgba(56, 196, 190, 0.22);
+  --surface: rgba(255, 255, 255, 0.62);
+  --surface-sheen: rgba(255, 255, 255, 0.5);
+  --surface-raised: #ffffff;
+  --row: rgba(91, 75, 224, 0.07);
+  --row-hover: rgba(91, 75, 224, 0.12);
+  --input: rgba(91, 75, 224, 0.07);
+  --search-fill: rgba(255, 255, 255, 0.82);
+  --search-edge: rgba(91, 75, 224, 0.45);
+  --ink: #1d1846;
+  --ink-muted: #4e4a78;
+  --brand: #5b4be0;
+  --brand-strong: #4636cc;
+  --brand-text: #4335c4;
+  --brand-soft: rgba(91, 75, 224, 0.14);
+  --on-brand: #ffffff;
+  --chip-on: #5b4be0;
+  --on-chip-on: #ffffff;
+  --ring-track: rgba(29, 24, 70, 0.1);
+  --hairline: rgba(40, 30, 110, 0.12);
+  --hairline-strong: rgba(40, 30, 110, 0.24);
+  --focus-ring: rgba(91, 75, 224, 0.28);
+  --scrim: rgba(20, 16, 60, 0.4);
+  --danger: #b3261e;
+  --stat-1: rgba(48, 160, 176, 0.16);
+  --stat-1-icon: #d9600f;
+  --stat-2: rgba(46, 176, 128, 0.16);
+  --stat-2-icon: #12875a;
+  --stat-3: rgba(196, 104, 86, 0.16);
+  --stat-3-icon: #c2611a;
+  --clock-ink: #1d1846;
+  --clock-shadow: 0 6px 30px rgba(120, 90, 255, 0.18);
+  --shadow: 0 14px 36px rgba(40, 30, 110, 0.1);
+  --shadow-pop: 0 24px 70px rgba(40, 30, 110, 0.22);
+  --search-shadow: 0 0 0 4px rgba(91, 75, 224, 0.1), 0 12px 36px rgba(91, 75, 224, 0.18);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+  html[data-theme="system"], html:not([data-theme]) {
+    --sky-top: #efeaff;
+    --sky-bottom: #d3e8ff;
+    --glow-a: rgba(140, 110, 255, 0.28);
+    --glow-b: rgba(255, 150, 200, 0.24);
+    --glow-c: rgba(60, 200, 190, 0.2);
+    --sun-1: #ffe2b4;
+    --sun-2: #ff9b7a;
+    --sun-glow: rgba(255, 160, 140, 0.35);
+    --ridge-far-1: #cdc3f7;
+    --ridge-far-2: #bcd0f7;
+    --ridge-near-1: #ab9eec;
+    --ridge-near-2: #a9c2f0;
+    --wave: rgba(56, 196, 190, 0.22);
+    --surface: rgba(255, 255, 255, 0.62);
+    --surface-sheen: rgba(255, 255, 255, 0.5);
+    --surface-raised: #ffffff;
+    --row: rgba(91, 75, 224, 0.07);
+    --row-hover: rgba(91, 75, 224, 0.12);
+    --input: rgba(91, 75, 224, 0.07);
+    --search-fill: rgba(255, 255, 255, 0.82);
+    --search-edge: rgba(91, 75, 224, 0.45);
+    --ink: #1d1846;
+    --ink-muted: #4e4a78;
+    --brand: #5b4be0;
+    --brand-strong: #4636cc;
+    --brand-text: #4335c4;
+    --brand-soft: rgba(91, 75, 224, 0.14);
+    --on-brand: #ffffff;
+    --chip-on: #5b4be0;
+    --on-chip-on: #ffffff;
+    --ring-track: rgba(29, 24, 70, 0.1);
+    --hairline: rgba(40, 30, 110, 0.12);
+    --hairline-strong: rgba(40, 30, 110, 0.24);
+    --focus-ring: rgba(91, 75, 224, 0.28);
+    --scrim: rgba(20, 16, 60, 0.4);
+    --danger: #b3261e;
+    --stat-1: rgba(48, 160, 176, 0.16);
+    --stat-1-icon: #d9600f;
+    --stat-2: rgba(46, 176, 128, 0.16);
+    --stat-2-icon: #12875a;
+    --stat-3: rgba(196, 104, 86, 0.16);
+    --stat-3-icon: #c2611a;
+    --clock-ink: #1d1846;
+    --clock-shadow: 0 6px 30px rgba(120, 90, 255, 0.18);
+    --shadow: 0 14px 36px rgba(40, 30, 110, 0.1);
+    --shadow-pop: 0 24px 70px rgba(40, 30, 110, 0.22);
+    --search-shadow: 0 0 0 4px rgba(91, 75, 224, 0.1), 0 12px 36px rgba(91, 75, 224, 0.18);
+    color-scheme: light;
+  }
+}
+
+/* ------------------------------------------------------------------ Base */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* The sky: soft colour pools over a vertical gradient. Plain CSS
+     gradients, painted once; no image, no blur filter, no animation. */
+  background:
+    radial-gradient(ellipse 45% 40% at 12% 0%, var(--glow-a), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 85% 4%, var(--glow-b), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 90% 100%, var(--glow-c), transparent 70%),
+    linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
+  background-attachment: fixed;
+  background-color: var(--sky-top);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+button, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { color: inherit; }
+h1, h2, p { margin-top: 0; }
+[hidden] { display: none !important; }
+
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid var(--brand-text);
+  outline-offset: 3px;
+}
+
+/* Press feedback. `scale` is its own property (not `transform`), so it
+   stacks with hover lifts and entrance animations instead of replacing them. */
+button:not(:disabled):active, a:active {
+  scale: var(--press-scale);
+  transition-duration: 70ms;
+}
+
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+.skip-link {
+  position: fixed;
+  z-index: 40;
+  top: 12px;
+  left: 12px;
+  translate: 0 -200%;
+  border-radius: 12px;
+  background: var(--surface-raised);
+  color: var(--ink);
+  padding: 12px 16px;
+  font-weight: 700;
+}
+.skip-link:focus { translate: 0; }
+
+/* The dusk scene sits fixed behind everything and never moves. */
+.scene {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.scene-wave { fill: var(--wave); }
+
+/* Entrance: pieces rise in, one after another in reading order.
+   `backwards` (not `both`) leaves nothing behind once it ends, so it cannot
+   interfere with later hover or press transforms. */
+@keyframes rise { from { opacity: 0; translate: 0 var(--rise-distance); } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes pop { 0% { scale: 0.4; opacity: 0; } 100% { scale: 1; opacity: 1; } }
+@keyframes tick { from { opacity: 0.35; translate: 0 calc(var(--rise-distance) * 0.4); } }
+
+.rise { animation: rise 460ms var(--spring) backwards; animation-delay: calc(var(--order, 0) * 45ms); }
+.rise-1 { --order: 1; }
+.rise-2 { --order: 2; }
+.rise-3 { --order: 3; }
+.rise-4 { --order: 4; }
+
+/* ---------------------------------------------------------------- Top bar */
+.topbar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 28px;
+  animation: fade-in 400ms ease backwards;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 14px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.brand-mark, .avatar-button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: linear-gradient(135deg, var(--ring-2), var(--play-1));
+  color: var(--on-brand);
+  font-weight: 800;
+}
+.brand-mark { border-radius: 14px; transition: rotate 420ms var(--spring); }
+.brand:hover .brand-mark { rotate: -8deg; }
+
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
+.avatar-button { border-radius: 50%; cursor: pointer; font-size: 15px; transition: scale 160ms var(--spring); }
+
+.icon-button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: scale 160ms var(--spring), border-color 160ms ease, background 160ms ease;
+}
+.icon-button:hover { border-color: var(--hairline-strong); }
+.icon-button--quiet { width: 36px; height: 36px; border-color: transparent; background: transparent; color: var(--ink-muted); position: relative; }
+.icon-button--quiet::after { content: ""; position: absolute; inset: -4px; }
+.icon-button--quiet:hover { background: var(--row); color: var(--ink); }
+
+/* -------------------------------------------------------------- Dashboard
+   Three columns on a wide window: recent | launch | weather and bookmarks. The side columns
+   keep a readable width and the centre takes what is left. */
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr) minmax(300px, 380px);
+  grid-template-areas: "left center right";
+  align-items: start;
+  gap: 24px;
+  max-width: 1720px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 92px 28px 32px;
+  outline: 0;
+}
+.column { display: grid; gap: 20px; min-width: 0; }
+.column--left { grid-area: left; }
+.column--center { grid-area: center; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.column--right { grid-area: right; }
+
+/* ------------------------------------------------------------------ Cards */
+/* Glass without blur: a translucent fill plus a faint top sheen reads as
+   glass over the smooth sky, and costs nothing compared to backdrop-filter. */
+.card {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, var(--surface-sheen), transparent 40%), var(--surface);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.card-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.card-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--brand-soft);
+  color: var(--brand-text);
+}
+.card-icon .icon { width: 22px; height: 22px; }
+.card-icon--check { background: linear-gradient(135deg, var(--dot-1), var(--ring-2)); color: var(--on-brand); }
+.card-icon--check .icon { stroke-width: 2.6; }
+.card-icon--chart { background: var(--stat-2); color: var(--stat-2-icon); }
+
+h1 { margin-bottom: 2px; font-size: clamp(1.4rem, 2vw, 1.9rem); font-weight: 750; line-height: 1.15; letter-spacing: -0.02em; }
+h2 { margin-bottom: 0; font-size: 19px; font-weight: 750; line-height: 1.25; letter-spacing: -0.015em; }
+.heading-note { font-size: 15px; font-weight: 600; color: var(--ink-muted); }
+.eyebrow { margin-bottom: 4px; color: var(--brand-text); font-size: 12px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+
+.pill-label {
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--row);
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.card-empty { margin: 0; color: var(--ink-muted); font-size: 15px; }
+.card-empty p { margin: 0 0 12px; }
+.note-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Rows that sit inside cards share one shape. */
+.row-pill {
+  border-radius: var(--radius-row);
+  background: var(--row);
+}
+
+.row-delete {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+  opacity: 0;
+  position: relative;
+  transition: opacity 140ms ease, background 140ms ease, color 140ms ease;
+}
+.row-delete .icon { width: 16px; height: 16px; }
+.row-delete::after { content: ""; position: absolute; inset: -6px; }
+/* Delete stays out of the way until the row is hovered or focused. */
+li:hover > .row-delete, li:focus-within > .row-delete { opacity: 1; }
+.row-delete:hover { background: var(--row-hover); color: var(--danger); }
+
+/* ---------------------------------------------------------------- Buttons */
+.primary-button, .secondary-button, .link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 0 18px;
+  cursor: pointer;
+  font-weight: 750;
+  transition: scale 160ms var(--spring), background 160ms ease, border-color 160ms ease;
+}
+.primary-button { border: 0; background: var(--brand); color: var(--on-brand); }
+.primary-button:hover { background: var(--brand-strong); }
+.secondary-button { border: 1px solid var(--hairline); background: var(--input); color: var(--ink); }
+.secondary-button:hover { border-color: var(--hairline-strong); }
+.link-button { justify-self: center; display: flex; margin: 10px auto 0; border: 0; background: transparent; color: var(--brand-text); padding: 0 12px; font-weight: 700; }
+.link-button .icon { width: 18px; height: 18px; transition: translate 260ms var(--spring); }
+.link-button:hover .icon { translate: 3px 0; }
+
+/* --------------------------------------------------------------- Schedule */
+.schedule-list, .history-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.schedule-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  border-radius: var(--radius-row);
+  background: var(--row);
+  padding: 4px 6px 4px 16px;
+}
+.schedule-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--dot); }
+.schedule-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 650; }
+.schedule-time { color: var(--ink-muted); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------------------------------------------------------------- History */
+.history-list { gap: 0; }
+.history-row + .history-row { border-top: 1px solid var(--hairline); }
+.history-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 62px;
+  border-radius: var(--radius-row);
+  color: var(--ink);
+  padding: 8px 6px;
+  text-decoration: none;
+  transition: background 140ms ease;
+}
+.history-link:hover { background: var(--row); }
+.history-text { display: grid; min-width: 0; }
+.history-title, .history-meta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.history-title { font-weight: 650; }
+.history-meta { color: var(--ink-muted); font-size: 14px; }
+.history-row .site-plate { width: 36px; height: 36px; border-radius: 10px; }
+.history-row .site-favicon { width: 24px; height: 24px; }
+.history-row .site-letter { font-size: 15px; }
+
+/* ------------------------------------------------------------- Hero centre */
+.hero-top { display: grid; justify-items: center; padding-top: 4px; text-align: center; }
+.date-label { margin: 0 0 4px; color: var(--ink); font-size: clamp(1.1rem, 1.5vw, 1.45rem); font-weight: 600; letter-spacing: 0.04em; opacity: 0.92; }
+
+.clock {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.06em;
+  margin: 0 0 14px;
+  color: var(--clock-ink);
+  /* Scales with the smaller of height and width so it never crowds a short
+     or a narrow window. */
+  font-size: clamp(4.5rem, min(16vh, 10vw), 9.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: var(--clock-shadow);
+}
+.clock-period { font-size: 0.24em; font-weight: 750; letter-spacing: 0.02em; }
+.clock-period:empty { display: none; }
+/* Added by app.js for one beat when the minute changes. */
+.clock.is-ticking time { display: inline-block; animation: tick 380ms var(--spring); }
+
+.subtitle { margin-bottom: 0; color: var(--ink-muted); font-size: 17px; }
+
+/* ----------------------------------------------------------------- Search */
+/* Raised above the rows below so the suggestion list opens over the engine
+   chips and tiles instead of underneath them. */
+.hero-search { position: relative; z-index: 3; width: min(720px, 100%); margin-top: 18px; }
+
+.search {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 68px;
+  border: 1.5px solid var(--search-edge);
+  border-radius: 999px;
+  background: var(--search-fill);
+  padding: 6px 22px 6px 26px;
+  box-shadow: var(--search-shadow);
+  transition: scale 260ms var(--spring), border-color 160ms ease, box-shadow 160ms ease;
+}
+/* The whole bar answers focus, not just the text field inside it. */
+.search:focus-within { scale: 1.012; border-color: var(--brand-text); box-shadow: 0 0 0 5px var(--focus-ring), var(--search-shadow); }
+.search-icon { width: 24px; height: 24px; color: var(--ink); }
+.search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 19px;
+  font-weight: 500;
+}
+.search input::-webkit-search-cancel-button { filter: grayscale(1); }
+/* A lighter weight on placeholders so an empty field never reads as filled. */
+input::placeholder, textarea::placeholder { color: var(--ink-muted); font-weight: 400; opacity: 1; }
+.search-hint {
+  display: grid;
+  min-width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 9px;
+  color: var(--ink-muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+.search:focus-within .search-hint { display: none; }
+
+/* Matching sites, shown under the bar while typing. */
+.suggestions {
+  position: absolute;
+  z-index: 10;
+  inset: calc(100% + 10px) 0 auto 0;
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 26px;
+  background: var(--surface-raised);
+  padding: 8px;
+  list-style: none;
+  box-shadow: var(--shadow-pop);
+  animation: rise 240ms var(--spring) backwards;
+}
+.suggestion {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  /* Nested radius = outer radius (26) minus the padding between them (8). */
+  border-radius: 18px;
+  padding: 6px 12px 6px 8px;
+  cursor: pointer;
+}
+.suggestion[aria-selected="true"] { background: var(--brand-soft); }
+.suggestion-text { display: grid; min-width: 0; }
+.suggestion-label, .suggestion-host { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.suggestion-label { font-weight: 650; }
+.suggestion-host { color: var(--ink-muted); font-size: 13px; }
+.suggestion-hint { display: none; color: var(--brand-text); }
+.suggestion[aria-selected="true"] .suggestion-hint { display: block; }
+.suggestion .site-plate { width: 40px; height: 40px; border-radius: 12px; }
+.suggestion .site-favicon { width: 22px; height: 22px; }
+.suggestion .site-letter { font-size: 16px; }
+
+/* ----------------------------------------------------------- Engine chips */
+.engine-row { display: flex; max-width: 100%; gap: 10px; overflow-x: auto; scrollbar-width: none; padding: 4px 2px; }
+.engine-chip {
+  position: relative;
+  min-height: 40px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--row);
+  color: var(--ink);
+  padding: 0 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 650;
+  transition: scale 160ms var(--spring), background 160ms ease, color 160ms ease;
+}
+/* The chip looks 40px tall but still offers a 44px target. */
+.engine-chip::after { content: ""; position: absolute; inset: -2px 0; }
+.engine-chip:hover { background: var(--row-hover); }
+.engine-chip[aria-checked="true"] { border-color: transparent; background: var(--chip-on); color: var(--on-chip-on); font-weight: 750; }
+
+/* -------------------------------------------------------------- Site tiles */
+.sites { display: grid; width: 100%; justify-items: center; gap: 14px; }
+
+.tile-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--tile-gap);
+  width: 100%;
+  max-width: calc(var(--tile-columns) * var(--tile-width) + (var(--tile-columns) - 1) * var(--tile-gap));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile { position: relative; width: var(--tile-width); }
+.tile-grid[data-intro] .tile { animation: rise 420ms var(--spring) backwards; animation-delay: calc(200ms + var(--n, 0) * 28ms); }
+.tile:nth-child(2) { --n: 1; }
+.tile:nth-child(3) { --n: 2; }
+.tile:nth-child(4) { --n: 3; }
+.tile:nth-child(5) { --n: 4; }
+.tile:nth-child(6) { --n: 5; }
+.tile:nth-child(7) { --n: 6; }
+.tile:nth-child(8) { --n: 7; }
+.tile:nth-child(9) { --n: 8; }
+.tile:nth-child(10) { --n: 9; }
+.tile:nth-child(11) { --n: 10; }
+.tile:nth-child(12) { --n: 11; }
+
+/* Each site is its own small glass card, as in the reference. */
+.tile-link {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  gap: 8px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-tile);
+  background: linear-gradient(180deg, var(--surface-sheen), transparent 50%), var(--surface);
+  color: var(--ink);
+  padding: 16px 6px 12px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: scale 160ms var(--spring), translate 260ms var(--spring), border-color 160ms ease, background 160ms ease;
+}
+.tile-link:hover, .tile-link:focus-visible { translate: 0 var(--lift); border-color: var(--hairline-strong); }
+.tile-link:focus-visible { outline-offset: 2px; }
+
+/* The square the icon sits on. */
+.site-plate {
+  position: relative;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 14px;
+  transition: scale 260ms var(--spring);
+}
+.tile-link:hover .site-plate, .tile-link:focus-visible .site-plate { scale: var(--hover-scale); }
+
+/* The letter tile and the real favicon are stacked. JavaScript sets
+   data-icon to say which one to show: "pending" shows neither for a moment
+   (so tiles don't flash before their icon arrives), then "favicon" or
+   "letter". */
+.site-letter, .site-favicon { grid-area: 1 / 1; opacity: 0; transition: opacity 160ms ease; }
+.site-letter {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  background: linear-gradient(135deg, var(--play-1), var(--ring-2));
+  color: var(--on-brand);
+  font-size: 20px;
+  font-weight: 800;
+}
+.site-favicon { width: 36px; height: 36px; border-radius: 8px; }
+[data-icon="letter"] .site-letter, [data-icon="favicon"] .site-favicon { opacity: 1; }
+
+.tile-label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 4px; }
+
+/* Pin and hide controls sit on the top corners of the tile. */
+.tile-action {
+  position: absolute;
+  top: -6px;
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  background: var(--surface-raised);
+  color: var(--ink-muted);
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+  scale: 0.6;
+  transition: opacity 140ms ease, scale 220ms var(--spring), color 140ms ease, background 140ms ease;
+}
+.tile-action .icon { width: 14px; height: 14px; stroke-width: 2.4; }
+/* Invisible 44px hit area around the 26px button. */
+.tile-action::after { content: ""; position: absolute; inset: -9px; }
+.tile-action--pin { left: -6px; }
+.tile-action--remove { right: -6px; }
+.tile:hover .tile-action, .tile:focus-within .tile-action { opacity: 1; scale: 1; }
+.tile-action:hover { color: var(--brand-text); }
+.tile-action--remove:hover { color: var(--danger); }
+.tile-action:not(:disabled):active { scale: 0.88; }
+/* A pinned site keeps its pin visible: that badge is how you can tell a pin
+   from a suggestion at a glance. */
+.tile-action[aria-pressed="true"] { opacity: 1; scale: 1; border-color: transparent; background: var(--brand); color: var(--on-brand); }
+.tile-action[aria-pressed="true"]:hover { background: var(--brand-strong); color: var(--on-brand); }
+.tile.is-just-pinned .tile-action--pin { animation: pop 520ms var(--spring); }
+
+.tile--add .site-plate { color: var(--ink); }
+.tile--add .site-plate .icon { width: 28px; height: 28px; }
+
+/* Placeholder tiles shown for the instant before Chrome answers. Same size
+   as real tiles, so nothing jumps when the real ones arrive. */
+.tile--skeleton {
+  height: 102px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-tile);
+  background: var(--surface);
+}
+.tile--skeleton .site-plate { margin: 16px auto 10px; background: var(--row); }
+.tile--skeleton .skeleton-line { display: block; width: 52px; height: 10px; margin: 0 auto; border-radius: 999px; background: var(--row); }
+
+/* Invitation, declined, empty and error messages for the site list. */
+.sites-note {
+  display: flex;
+  width: min(680px, 100%);
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  padding: 16px 16px 16px 20px;
+  animation: rise 420ms var(--spring) backwards;
+}
+.sites-note-text { display: grid; flex: 1; min-width: 0; gap: 2px; }
+.sites-note strong { font-size: 16px; letter-spacing: -0.01em; }
+.sites-note p { margin: 0; color: var(--ink-muted); font-size: 15px; }
+.sites-note-actions { display: flex; flex: 0 0 auto; gap: 8px; }
+.sites-note--quiet { width: auto; border-color: transparent; background: transparent; padding: 0; text-align: center; color: var(--ink-muted); }
+
+/* ---------------------------------------------------------------- Dialogs */
+.dialog { width: min(500px, calc(100% - 28px)); max-height: calc(100vh - 40px); border: 0; border-radius: 28px; background: transparent; color: var(--ink); padding: 0; }
+.dialog[open] { animation: rise 320ms var(--spring) backwards; }
+.dialog::backdrop { background: var(--scrim); animation: fade-in 200ms ease backwards; }
+.dialog-card { display: grid; gap: 16px; border: 1px solid var(--hairline); border-radius: 28px; background: var(--surface-raised); padding: 22px; box-shadow: var(--shadow-pop); }
+.dialog-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.field { display: grid; gap: 7px; min-width: 0; font-weight: 700; }
+.field small { color: var(--ink-muted); font-weight: 500; }
+.field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.field input, .field select, .dialog textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  background: var(--input);
+  color: var(--ink);
+  padding: 0 13px;
+}
+.dialog textarea { min-height: 110px; padding: 12px 13px; resize: vertical; font-size: 16px; }
+.field input:focus-visible, .field select:focus-visible, .dialog textarea:focus-visible { border-color: var(--brand-text); box-shadow: 0 0 0 4px var(--focus-ring); outline: 0; }
+.field select option { background: var(--surface-raised); color: var(--ink); }
+.setting-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.setting-status { margin: 0; color: var(--ink-muted); font-size: 14px; font-weight: 400; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 4px; }
+.form-error { margin: -5px 0 0; color: var(--danger); font-size: 14px; }
+
+.toast {
+  position: fixed;
+  z-index: 30;
+  /* Centred with auto margins rather than translate, because the entrance
+     animation animates translate and the two would fight. */
+  inset: auto 0 24px 0;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  max-width: min(420px, calc(100% - 32px));
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--surface-raised);
+  color: var(--ink);
+  padding: 10px 20px;
+  min-height: 48px;
+  box-shadow: var(--shadow-pop);
+  font-weight: 700;
+  animation: rise 320ms var(--spring) backwards;
+}
+.toast-undo { min-height: 36px; margin-left: 12px; border: 0; border-radius: 999px; background: transparent; color: var(--brand-text); padding: 0 8px; cursor: pointer; font-weight: 800; }
+
+/* ------------------------------------------------------------- Responsive */
+/* Medium windows: the launchpad takes the full width on top and the two
+   side columns sit side by side underneath. */
+@media (max-width: 1180px) {
+  .dashboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "center center" "left right";
+    max-width: 920px;
+  }
+  .column--center { padding-bottom: 12px; }
+}
+
+/* Narrow windows: one column, launch first, then weather, bookmarks, and recent. */
+@media (max-width: 760px) {
+  :root {
+    --tile-columns: 4;
+    --tile-gap: 8px;
+    /* Four tiles always fit: the window width minus the gutters and gaps. */
+    --tile-width: min(92px, calc((100vw - 32px - 24px) / 4));
+  }
+  .dashboard {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "center" "right" "left";
+    gap: 20px;
+    padding: 80px 16px 24px;
+  }
+  .topbar { padding: 16px; }
+  .brand-name { display: none; }
+  .search { min-height: 60px; grid-template-columns: auto 1fr; padding: 6px 20px; }
+  .search-hint { display: none; }
+  .search input { font-size: 17px; }
+  /* Keep two tidy rows of four: seven sites plus the add tile. */
+  .tile:not(.tile--add):nth-child(n + 8) { display: none; }
+  .tile-link { padding: 12px 4px 10px; font-size: 13px; }
+  .sites-note { flex-direction: column; align-items: stretch; padding: 16px; text-align: center; }
+  .sites-note-actions { justify-content: center; }
+  .card { padding: 16px; }
+  .field-row { grid-template-columns: minmax(0, 1fr); }
+  .dialog { width: 100%; max-width: 100%; max-height: 90vh; margin: auto 0 0; border-radius: 28px 28px 0 0; }
+  .dialog-card { border-radius: 28px 28px 0 0; }
+  /* Touch screens have no hover, so delete buttons stay visible. */
+  .row-delete { opacity: 1; }
+}
+
+@media (hover: none) {
+  .row-delete { opacity: 1; }
+}
+
+/* ---------------------------------------------------------- Accessibility */
+/* Reduced motion: movement becomes a plain fade and presses dim instead of
+   shrinking. Zeroing the motion variables does this for every component. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --spring: ease;
+    --press-scale: 1;
+    --rise-distance: 0px;
+    --lift: 0px;
+    --hover-scale: 1;
+  }
+  html { scroll-behavior: auto; }
+  .search:focus-within { scale: 1; }
+  .brand:hover .brand-mark { rotate: 0deg; }
+  .tile.is-just-pinned .tile-action--pin { animation-name: fade-in; }
+  .task-check:checked + .task-box { scale: 1; }
+  .link-button:hover .icon { translate: 0; }
+  .ring-value { transition: none; }
+  button:not(:disabled):active, a:active { opacity: 0.85; }
+}
+
+/* Reduced transparency: cards become solid. */
+@media (prefers-reduced-transparency: reduce) {
+  .card, .tile-link, .sites-note { background: var(--surface-raised); }
+}
+
+@media (prefers-contrast: more) {
+  :root { --hairline: currentColor; --hairline-strong: currentColor; }
+  .card, .search, .tile-link, input, textarea, select { border-width: 2px; }
+  .card, .tile-link { background: var(--surface-raised); }
+}
+
+@media (forced-colors: active) {
+  .scene { display: none; }
+  .site-letter { border: 1px solid CanvasText; }
+  .task-box { border-color: CanvasText; }
+}
+
+/* Night Bloom: a quiet, static launchpad. The two optional element colors
+   are separate so a clock choice never changes the readability of a panel. */
+:root {
+  --sky-top: #000000;
+  --sky-bottom: #000000;
+  --surface: #1d2132;
+  --surface-sheen: transparent;
+  --surface-raised: #202439;
+  --row: #292e48;
+  --row-hover: #333a59;
+  --input: #292e48;
+  --search-fill: #20243a;
+  --search-edge: #3b4265;
+  --ink: #f4f3ff;
+  --ink-muted: #b6bdd5;
+  --brand: #0b57d0;
+  --brand-strong: #0842a0;
+  --brand-text: #b8c8ff;
+  --brand-soft: #304575;
+  --chip-on: #b8c8ff;
+  --on-chip-on: #17244b;
+  --ring-1: #b8c8ff;
+  --ring-2: #6e8cdb;
+  --clock-ink: #f4f3ff;
+  --clock-shadow: none;
+  --shadow: none;
+  --shadow-pop: 0 20px 64px #00000088;
+  --search-shadow: none;
+  --hairline: #ffffff15;
+  --hairline-strong: #ffffff38;
+  --clock-face: #272c45;
+  --panel-fill: #1d2132;
+  --panel-feature: #354a86;
+  --bloom-backdrop: #171a29;
+  --photo-scrim: #0000002e;
+  --photo-center: #171a2959;
+  --photo-clock-fill: color-mix(in srgb, var(--clock-face) 80%, #101425);
+  --photo-feature-fill: color-mix(in srgb, var(--panel-feature) 65%, #101425);
+  --tile-columns: 5;
+}
+
+html[data-theme="light"] {
+  --sky-top: #d3e8ff;
+  --sky-bottom: #d3e8ff;
+  --surface: #f7f9ff;
+  --surface-raised: #ffffff;
+  --row: #e7ecfa;
+  --row-hover: #dce5f8;
+  --input: #e7ecfa;
+  --search-fill: #ffffff;
+  --search-edge: #a9bce5;
+  --ink: #17203a;
+  --ink-muted: #4b5872;
+  --brand: #0b57d0;
+  --brand-strong: #0842a0;
+  --brand-text: #0842a0;
+  --brand-soft: #d8e7ff;
+  --chip-on: #0b57d0;
+  --on-chip-on: #ffffff;
+  --ring-1: #0b57d0;
+  --ring-2: #6096e8;
+  --clock-ink: #17203a;
+  --hairline: #17203a20;
+  --hairline-strong: #17203a55;
+  --clock-face: #c0d5fa;
+  --panel-fill: #f7f9ff;
+  --panel-feature: #c8d9fa;
+  --bloom-backdrop: #c8dcf4;
+  --photo-scrim: #ffffff26;
+  --photo-center: #f1f6ff66;
+  --photo-clock-fill: var(--clock-face);
+  --photo-feature-fill: var(--panel-feature);
+}
+
+@media (prefers-color-scheme: light) {
+  html[data-theme="system"], html:not([data-theme]) {
+    --sky-top: #d3e8ff;
+    --sky-bottom: #d3e8ff;
+    --surface: #f7f9ff;
+    --surface-raised: #ffffff;
+    --row: #e7ecfa;
+    --row-hover: #dce5f8;
+    --input: #e7ecfa;
+    --search-fill: #ffffff;
+    --search-edge: #a9bce5;
+    --ink: #17203a;
+    --ink-muted: #4b5872;
+    --brand: #0b57d0;
+    --brand-strong: #0842a0;
+    --brand-text: #0842a0;
+    --brand-soft: #d8e7ff;
+    --chip-on: #0b57d0;
+    --on-chip-on: #ffffff;
+    --ring-1: #0b57d0;
+    --ring-2: #6096e8;
+    --clock-ink: #17203a;
+    --hairline: #17203a20;
+    --hairline-strong: #17203a55;
+    --clock-face: #c0d5fa;
+    --panel-fill: #f7f9ff;
+    --panel-feature: #c8d9fa;
+    --bloom-backdrop: #c8dcf4;
+    --photo-scrim: #ffffff26;
+    --photo-center: #f1f6ff66;
+    --photo-clock-fill: var(--clock-face);
+    --photo-feature-fill: var(--panel-feature);
+  }
+}
+
+html[data-clock-color="baby-pink"] { --clock-face: #985074; }
+html[data-clock-color="dark-red"] { --clock-face: #813948; }
+html[data-clock-color="dark-green"] { --clock-face: #245d4c; }
+html[data-clock-color="ocean-blue"] { --clock-face: #24688f; }
+html[data-panel-color="baby-pink"] { --panel-fill: #352334; --panel-feature: #954e70; }
+html[data-panel-color="dark-red"] { --panel-fill: #30212d; --panel-feature: #7e3747; }
+html[data-panel-color="dark-green"] { --panel-fill: #1b302d; --panel-feature: #245d4c; }
+html[data-panel-color="ocean-blue"] { --panel-fill: #1b2d3b; --panel-feature: #24688f; }
+html[data-theme="light"][data-clock-color="baby-pink"] { --clock-face: #f6cde1; }
+html[data-theme="light"][data-clock-color="dark-red"] { --clock-face: #e3abb5; }
+html[data-theme="light"][data-clock-color="dark-green"] { --clock-face: #abd8c6; }
+html[data-theme="light"][data-clock-color="ocean-blue"] { --clock-face: #add9ee; }
+html[data-theme="light"][data-panel-color="baby-pink"] { --panel-fill: #fff0f6; --panel-feature: #f0bed7; }
+html[data-theme="light"][data-panel-color="dark-red"] { --panel-fill: #fff1f1; --panel-feature: #e8b8bd; }
+html[data-theme="light"][data-panel-color="dark-green"] { --panel-fill: #edf9f2; --panel-feature: #b8e4ce; }
+html[data-theme="light"][data-panel-color="ocean-blue"] { --panel-fill: #edf8ff; --panel-feature: #b7dff1; }
+@media (prefers-color-scheme: light) {
+  html[data-theme="system"][data-clock-color="baby-pink"] { --clock-face: #f6cde1; }
+  html[data-theme="system"][data-clock-color="dark-red"] { --clock-face: #e3abb5; }
+  html[data-theme="system"][data-clock-color="dark-green"] { --clock-face: #abd8c6; }
+  html[data-theme="system"][data-clock-color="ocean-blue"] { --clock-face: #add9ee; }
+  html[data-theme="system"][data-panel-color="baby-pink"] { --panel-fill: #fff0f6; --panel-feature: #f0bed7; }
+  html[data-theme="system"][data-panel-color="dark-red"] { --panel-fill: #fff1f1; --panel-feature: #e8b8bd; }
+  html[data-theme="system"][data-panel-color="dark-green"] { --panel-fill: #edf9f2; --panel-feature: #b8e4ce; }
+  html[data-theme="system"][data-panel-color="ocean-blue"] { --panel-fill: #edf8ff; --panel-feature: #b7dff1; }
+}
+
+body { position: relative; background: var(--sky-top); }
+.topbar { justify-content: flex-end; padding: 28px 56px; }
+.brand { position: absolute; z-index: 5; left: 56px; bottom: 24px; }
+.brand-mark, .avatar-button { background: var(--chip-on); color: var(--on-chip-on); }
+.brand-mark { width: 36px; height: 36px; border-radius: 0; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.brand-name { font-size: 16px; }
+.dashboard {
+  grid-template-columns: minmax(280px, 320px) minmax(0, 1fr) minmax(280px, 320px);
+  gap: 40px;
+  max-width: 1440px;
+  padding: 128px 56px 96px;
+}
+.column--left { padding-top: 60px; }
+.column--center { position: relative; isolation: isolate; gap: 14px; }
+.column--center::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -128px;
+  left: -5%;
+  width: 110%;
+  height: 540px;
+  border-radius: 30% 30% 28% 28% / 26% 26% 18% 18%;
+  background: var(--bloom-backdrop);
+  pointer-events: none;
+}
+.card { border-color: transparent; background: var(--panel-fill); box-shadow: none; padding: 22px 24px; }
+.schedule-card { border-radius: 44px 44px 20px 44px; }
+.history-card { border-radius: 20px 44px 44px 44px; }
+.weather-card { border-radius: 100px 44px 100px 44px; background: color-mix(in srgb, var(--panel-feature) 90%, transparent); }
+.bookmarks-card { border-radius: 20px 44px 44px 44px; }
+.tasks-card { border-radius: 20px 44px 44px 44px; }
+.hero-top { padding-top: 0; }
+.clock-bloom {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: 276px;
+  height: 276px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  border-radius: 40% 34% 38% 32%;
+  background: var(--clock-face);
+}
+.clock-bloom::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  z-index: 0;
+  border-radius: 34% 40% 32% 38%;
+  background: var(--clock-face);
+  rotate: 45deg;
+}
+.clock-bloom::after {
+  content: "";
+  position: absolute;
+  top: 78px;
+  right: 20px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffad89;
+}
+.clock-bloom .clock, .clock-bloom .date-label { position: relative; z-index: 1; }
+.clock { margin: 0 0 8px; font-size: clamp(4.2rem, 6vw, 5rem); line-height: 1; }
+.date-label { margin: 0; color: var(--ink-muted); font-size: 14px; letter-spacing: 0; }
+.hero-top h1 { font-size: clamp(1.8rem, 2.6vw, 2.1rem); }
+.subtitle { font-size: 16px; }
+.hero-search { width: min(608px, 100%); margin-top: 8px; }
+.search { min-height: 62px; border-width: 1px; padding: 5px 16px 5px 20px; }
+.search input { font-size: 16px; }
+.engine-row { gap: 8px; padding-top: 0; }
+.engine-chip { min-height: 42px; padding: 0 14px; font-size: 13px; }
+.card-heading { gap: 10px; }
+.card-icon { width: 40px; height: 40px; }
+.pill-label { font-size: 12px; }
+
+@media (max-width: 1180px) {
+  .dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; padding: 110px 28px 90px; }
+  .column--left { padding-top: 0; }
+  .column--center::before { top: -110px; left: 0; width: 100%; }
+  .brand { left: 28px; }
+  .topbar { padding: 24px 28px; }
+}
+@media (max-width: 760px) {
+  :root { --tile-columns: 4; }
+  .dashboard { grid-template-columns: minmax(0, 1fr); padding: 92px 16px 24px; }
+  .column--center::before { top: -92px; height: 440px; }
+  .clock-bloom { width: 232px; height: 232px; margin-bottom: 18px; }
+  .clock { font-size: 4.15rem; }
+  .clock-bloom::after { top: 64px; right: 14px; }
+  .brand { position: relative; left: auto; bottom: auto; margin: 8px 16px 24px; }
+  .brand-name { display: inline; }
+  .topbar { padding: 16px; }
+  .card { padding: 18px; }
+}
+
+/* The right rail is useful even when Chrome access or a weather city has not
+   been provided. Empty states keep one clear action in the same footprint. */
+.weather-card { min-height: 248px; padding: 28px 36px; }
+.weather-top { display: flex; align-items: start; justify-content: space-between; min-height: 104px; }
+.weather-top .icon { width: 44px; height: 44px; color: #ffc39f; stroke-width: 1.7; }
+.weather-top strong { font-size: clamp(3.4rem, 5vw, 4.4rem); line-height: 1; letter-spacing: -0.06em; }
+.weather-temperature-group { display: grid; justify-items: end; gap: 4px; }
+.weather-unit { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border: 1px solid var(--hairline-strong); border-radius: 999px; background: color-mix(in srgb, var(--panel-fill) 60%, transparent); color: var(--ink); cursor: pointer; font-size: 13px; font-weight: 750; }
+.weather-unit[hidden] { display: none; }
+.weather-unit:hover { scale: var(--hover-scale); }
+.weather-unit:active { scale: var(--press-scale); }
+.weather-unit:focus-visible { outline: 3px solid var(--brand-text); outline-offset: 2px; }
+.weather-card h2 { margin-bottom: 2px; font-size: 17px; }
+.weather-location { margin: 0; color: var(--ink); font-size: 14px; }
+.weather-details { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+.weather-details span { border-radius: 999px; background: #0000002e; padding: 6px 10px; font-size: 12px; font-weight: 650; }
+.weather-setup { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; margin-top: 14px; border: 0; background: transparent; color: var(--ink); padding: 0; cursor: pointer; font-weight: 700; }
+.weather-setup .icon { width: 17px; height: 17px; }
+.weather-credit { display: block; width: fit-content; margin-top: 12px; color: var(--ink); font-size: 11px; opacity: 0.82; text-decoration: none; }
+.weather-credit:hover { text-decoration: underline; }
+.bookmarks-card .card-heading { grid-template-columns: auto minmax(0, 1fr) auto; }
+.bookmarks-manage { margin: 0; padding: 0; font-size: 13px; }
+.history-card .card-heading { grid-template-columns: auto minmax(0, 1fr) auto; }
+.history-all { margin: 0; padding: 0; font-size: 12px; white-space: nowrap; }
+.bookmark-folders { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.bookmark-folder { display: inline-flex; align-items: center; gap: 5px; min-height: 36px; border: 1px solid transparent; border-radius: 999px; background: var(--row); color: var(--ink); padding: 0 10px; cursor: pointer; font-size: 12px; font-weight: 700; }
+.bookmark-folder[aria-pressed="true"] { border-color: var(--brand-text); background: var(--brand-soft); }
+.bookmark-folder .icon { width: 15px; height: 15px; }
+.bookmark-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.bookmark-row + .bookmark-row { border-top: 1px solid var(--hairline); }
+.bookmark-link { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; min-height: 56px; border-radius: var(--radius-row); color: var(--ink); padding: 6px 2px; text-decoration: none; }
+.bookmark-link:hover { background: var(--row); }
+.bookmark-row .site-plate { width: 34px; height: 34px; border-radius: 10px; }
+.bookmark-row .site-favicon { width: 23px; height: 23px; }
+.bookmark-row .site-letter { font-size: 14px; }
+.bookmark-text { display: grid; min-width: 0; }
+.bookmark-title, .bookmark-host { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bookmark-title { font-size: 13px; font-weight: 700; }
+.bookmark-host { color: var(--ink-muted); font-size: 12px; }
+.bookmarks-card .card-empty { font-size: 14px; }
+.bookmarks-card .note-actions { margin-top: 12px; }
+@media (max-width: 760px) { .weather-card { min-height: 210px; padding: 24px; } }
+
+/* Widgets can leave either rail empty. Rebuild the grid around what is
+   actually shown so the search column never inherits a blank rail. */
+.dashboard[data-layout="left"] {
+  grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
+  grid-template-areas: "left center";
+  max-width: 1060px;
+}
+.dashboard[data-layout="right"] {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 320px);
+  grid-template-areas: "center right";
+  max-width: 1060px;
+}
+.dashboard[data-layout="none"] {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "center";
+  align-items: center;
+  max-width: 720px;
+}
+.dashboard[data-layout="none"] .column--center { align-self: center; }
+.dashboard[data-minimal="true"] .column--center::before { display: none; }
+.dashboard[data-minimal="true"] .column--center { gap: 20px; }
+.dashboard[data-minimal="true"] .hero-search { margin-top: 0; }
+
+.dialog-card { max-height: calc(100vh - 40px); overflow-y: auto; }
+#settings-dialog { width: min(960px, calc(100% - 32px)); max-width: 960px; }
+#settings-form {
+  background: color-mix(in srgb, var(--surface-raised) 92%, transparent);
+  max-height: calc(100dvh - 32px);
+}
+.settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.settings-column { display: grid; align-content: start; gap: 16px; min-width: 0; }
+.settings-weather-row { grid-template-columns: minmax(0, 1fr) minmax(150px, 0.7fr); }
+.settings-access { border: 1px solid var(--hairline); border-radius: 16px; padding: 12px 14px; }
+.settings-access summary { cursor: pointer; font-weight: 700; }
+.settings-access[open] summary { margin-bottom: 2px; }
+.settings-access[open] .field + .field { margin-top: 14px; }
+@media (min-width: 900px) {
+  .background-field:has(.background-preview:not([hidden])) { grid-template-columns: minmax(0, 1fr) 96px; }
+  .background-field:has(.background-preview:not([hidden])) > label:first-child,
+  .background-field:has(.background-preview:not([hidden])) .setting-status,
+  .background-field:has(.background-preview:not([hidden])) .form-error { grid-column: 1 / -1; }
+  .background-field:has(.background-preview:not([hidden])) .background-preview {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    width: 96px;
+    height: 96px;
+  }
+}
+#settings-form .dialog-actions {
+  position: sticky;
+  bottom: -22px;
+  z-index: 1;
+  background: color-mix(in srgb, var(--surface-raised) 94%, transparent);
+  border-top: 1px solid var(--hairline);
+  margin: 0 -22px -22px;
+  padding: 12px 22px;
+}
+.widget-settings { min-width: 0; margin: 0; border: 1px solid var(--hairline); border-radius: 18px; padding: 14px; }
+.widget-settings legend { padding: 0 6px; font-weight: 750; }
+.widget-settings p { margin: 0 0 12px; color: var(--ink-muted); font-size: 14px; font-weight: 400; }
+.widget-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.widget-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.widget-option { display: flex; align-items: center; gap: 10px; min-height: 44px; border-radius: 12px; background: var(--row); padding: 8px 10px; cursor: pointer; font-size: 13px; font-weight: 650; }
+.widget-option input { width: 18px; height: 18px; flex: 0 0 auto; margin: 0; accent-color: var(--brand); }
+
+@media (max-width: 1180px) {
+  .dashboard[data-layout="left"], .dashboard[data-layout="right"] {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 900px;
+  }
+  .dashboard[data-layout="left"] { grid-template-areas: "center" "left"; }
+  .dashboard[data-layout="right"] { grid-template-areas: "center" "right"; }
+}
+@media (max-width: 760px) {
+  #settings-dialog { width: 100%; max-width: 100%; max-height: 100dvh; margin: 0; border-radius: 0; }
+  #settings-form { max-height: 100dvh; min-height: 100dvh; border-radius: 0; }
+  .settings-grid { grid-template-columns: minmax(0, 1fr); }
+  .settings-weather-row { grid-template-columns: minmax(0, 1fr); }
+  .dashboard[data-layout="none"] { padding: 80px 16px; }
+  .dashboard[data-one-row="true"] {
+    --tile-columns: 5;
+    --tile-width: min(68px, calc((100vw - 32px - 32px) / 5));
+  }
+  .dashboard[data-one-row="true"] .site-plate { width: 36px; height: 36px; }
+  .dashboard[data-one-row="true"] .tile-link { padding: 10px 2px; font-size: 11px; }
+  .widget-options { grid-template-columns: minmax(0, 1fr); }
+  .dialog-card:not(#settings-form) { max-height: 90vh; }
+}
+
+/* Keep photo mode readable while allowing the picture through each widget.
+   The clock fill is slightly darkened in dark mode for custom accent colors. */
+html[data-background="photo"] body {
+  background-image: linear-gradient(var(--photo-scrim), var(--photo-scrim)), var(--photo-image);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+html[data-background="photo"] .column--center::before { background: var(--photo-center); }
+html[data-background="photo"] .clock-bloom,
+html[data-background="photo"] .clock-bloom::before {
+  background: color-mix(in srgb, var(--photo-clock-fill) 78%, transparent);
+}
+html[data-background="photo"] .clock-bloom .date-label { color: var(--clock-ink); }
+html[data-background="photo"] .card {
+  background: color-mix(in srgb, var(--panel-fill) 72%, transparent);
+}
+html[data-background="photo"] .weather-card {
+  background: color-mix(in srgb, var(--photo-feature-fill) 72%, transparent);
+}
+html[data-background="photo"] .search {
+  background: color-mix(in srgb, var(--search-fill) 82%, transparent);
+}
+html[data-background="photo"] .tile-link,
+html[data-background="photo"] .tile--skeleton,
+html[data-background="photo"] .sites-note {
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+}
+html[data-background="photo"] .sites-note--quiet { background: transparent; }
+html[data-background="photo"] .engine-chip:not([aria-checked="true"]),
+html[data-background="photo"] .schedule-row,
+html[data-background="photo"] .bookmark-folder:not([aria-pressed="true"]),
+html[data-background="photo"] .bookmark-link:hover,
+html[data-background="photo"] .history-link:hover {
+  background: color-mix(in srgb, var(--row) 78%, transparent);
+}
+
+.background-field > label:first-child { font-weight: 700; }
+.background-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.background-upload { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 999px; padding: 0 18px; cursor: pointer; font-weight: 750; }
+.background-upload:active { scale: var(--press-scale); }
+.background-upload:focus-within { outline: 3px solid var(--brand-text); outline-offset: 3px; }
+.background-preview { display: block; width: 100%; height: 116px; border: 1px solid var(--hairline); border-radius: 14px; object-fit: cover; }
